@@ -6,6 +6,14 @@
 #property copyright "Copyright 2020, MetaQuotes Software Corp."
 #property link      "https://www.mql5.com"
 #property version   "1.00"
+
+#include "../include/tzigzag.mqh"
+#include "../include/tjanela.mqh"
+
+
+tzigzag zigzag;
+
+
 //+------------------------------------------------------------------+
 //| Expert initialization function                                   |
 //+------------------------------------------------------------------+
@@ -13,6 +21,17 @@ int OnInit()
   {
 //--- create timer
    EventSetTimer(60);
+   
+   
+//--- create application dialog
+   if(!janela.Create(0,"Controls",0,40,40,380,344))
+      return(INIT_FAILED);
+//--- run application
+   janela.Run();
+   
+//---inicializando zigzag   
+   
+   //zigzag.Create();
    
 //---
    return(INIT_SUCCEEDED);
@@ -24,6 +43,8 @@ void OnDeinit(const int reason)
   {
 //--- destroy timer
    EventKillTimer();
+   
+   janela.Destroy(reason);
    
   }
 //+------------------------------------------------------------------+
@@ -105,6 +126,8 @@ void OnChartEvent(const int id,
                   const string &sparam)
   {
 //---
+
+      janela.ChartEvent(id,lparam,dparam,sparam);
    
   }
 //+------------------------------------------------------------------+
