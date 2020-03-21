@@ -27,9 +27,10 @@
 //+------------------------------------------------------------------+
 
 
-class tzigzag 
-  {
+class Czigzag 
+{
 private:
+   MqlRates candle[];
 
    
 public:
@@ -51,8 +52,10 @@ protected:
   };
   
   
-bool tzigzag::Create(void){
+bool Czigzag::Create(void){
 
    return true;
 
 }
+
+Czigzag zigzag;
